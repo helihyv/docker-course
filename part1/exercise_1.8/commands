@@ -1,0 +1,10 @@
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.8$ touch logs.txt
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.8$ docker run -v $(pwd)/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
+(node:1) ExperimentalWarning: The fs.promises API is experimental
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^CClosing file

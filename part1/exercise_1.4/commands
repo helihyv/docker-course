@@ -1,0 +1,22 @@
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.4$ docker run -d devopsdockeruh/exec_bash_exercise
+39b45df1c2238d1e75fa26145e52abfdc8a8be07eb1d22be73ca5fa99da3010f
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.4$ docker ps
+CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS               NAMES
+39b45df1c223        devopsdockeruh/exec_bash_exercise   "node index"        47 seconds ago      Up 46 seconds                           clever_hugle
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.4$ docker exec -it clever_hugle bash
+root@39b45df1c223:/usr/app# tail -f ./logs.txt
+Wed, 29 May 2019 05:24:30 GMT
+Secret message is:
+"Docker is easy"
+Wed, 29 May 2019 05:24:36 GMT
+Wed, 29 May 2019 05:24:39 GMT
+Wed, 29 May 2019 05:24:42 GMT
+Wed, 29 May 2019 05:24:45 GMT
+Secret message is:
+"Docker is easy"
+Wed, 29 May 2019 05:24:51 GMT
+Wed, 29 May 2019 05:24:54 GMT
+Wed, 29 May 2019 05:24:57 GMT
+^C
+root@39b45df1c223:/usr/app# exit
+exit
