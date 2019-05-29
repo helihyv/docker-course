@@ -1,0 +1,64 @@
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker build -t exer12back .
+Sending build context to Docker daemon  388.1kB
+Step 1/10 : FROM ubuntu:16.04
+ ---> 2a697363a870
+Step 2/10 : WORKDIR /mydir
+ ---> Using cache
+ ---> 75d868e70bcb
+Step 3/10 : EXPOSE 8000
+ ---> Using cache
+ ---> 6beb7988eb97
+Step 4/10 : RUN apt-get update && apt-get install -y curl
+ ---> Using cache
+ ---> 82ac9389fea5
+Step 5/10 : RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+ ---> Using cache
+ ---> b647b79473de
+Step 6/10 : RUN apt install -y nodejs
+ ---> Using cache
+ ---> 1365438ea9b6
+Step 7/10 : ENV FRONT_URL=http://localhost:5000
+ ---> Running in ffe60305ffac
+Removing intermediate container ffe60305ffac
+ ---> e28a1fe8d6ce
+Step 8/10 : COPY . .
+ ---> 1c6da2f79367
+Step 9/10 : RUN npm install
+ ---> Running in c5822d8f9915
+
+> nodemon@1.18.9 postinstall /mydir/node_modules/nodemon
+> node bin/postinstall || exit 0
+
+Love nodemon? You can now support the project via the open collective:
+ > https://opencollective.com/nodemon/donate
+
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 606 packages from 458 contributors and audited 5317 packages in 11.908s
+found 3 vulnerabilities (1 moderate, 2 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+Removing intermediate container c5822d8f9915
+ ---> 0d394112393e
+Step 10/10 : ENTRYPOINT npm start
+ ---> Running in 9c8a9dbe6885
+Removing intermediate container 9c8a9dbe6885
+ ---> d4a262ee2444
+Successfully built d4a262ee2444
+Successfully tagged exer12back:latest
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker ps
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+7b0e47ab32e8        exer12front                         "/bin/sh -c '/usr/bi…"   4 minutes ago       Up 4 minutes        0.0.0.0:5000->5000/tcp   ex12front
+8afa48c2ecac        exer11                              "/bin/sh -c 'npm sta…"   2 hours ago         Up About an hour    0.0.0.0:8000->8000/tcp   backend
+d24b16066fb8        devopsdockeruh/ports_exercise       "npm start"              6 hours ago         Up 6 hours          0.0.0.0:8080->80/tcp     clever_mclaren
+c289b362b8ae        devopsdockeruh/ports_exercise       "npm start"              6 hours ago         Up 6 hours          0.0.0.0:32770->80/tcp    fervent_ellis
+a9b0880f7d81        docker-clock                        "./start.sh -c"          8 hours ago         Up 8 hours                                   heuristic_gates
+21933f48ab54        docker-clock                        "./start.sh -c"          8 hours ago         Up 8 hours                                   mystifying_edison
+8dba71126bd4        a138eebbba3c                        "./start.sh -c 12"       8 hours ago         Up 8 hours                                   quirky_mayer
+7c87c1d5e104        a138eebbba3c                        "./start.sh -c"          9 hours ago         Up 9 hours                                   stupefied_blackburn
+39b45df1c223        devopsdockeruh/exec_bash_exercise   "node index"             9 hours ago         Up 9 hours                                   clever_hugle
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker stop backend
+backend
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ touch logs.txt
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker run -d --name exer12backend -p 8000:8000 -v $(pwd)/logs.txt:/mydir/logs.txt exer12back
+6e1a42ae4fa60c5394c62d126e6738313ca1b4405c37411d616fe70f49ffec93

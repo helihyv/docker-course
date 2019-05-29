@@ -1,0 +1,74 @@
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ docker build -t exer10 .
+Sending build context to Docker daemon  93.13MB
+Step 1/11 : FROM ubuntu:16.04
+ ---> 2a697363a870
+Step 2/11 : WORKDIR /mydir
+ ---> Using cache
+ ---> 75d868e70bcb
+Step 3/11 : EXPOSE 5000
+ ---> Using cache
+ ---> 22c9d0cdd695
+Step 4/11 : RUN apt-get update && apt-get install -y curl
+ ---> Using cache
+ ---> 7c7a72fcc0d7
+Step 5/11 : RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+ ---> Using cache
+ ---> df602d008c4b
+Step 6/11 : RUN apt install -y nodejs
+ ---> Using cache
+ ---> fb44b4cd9762
+Step 7/11 : RUN npm install -g serve
+ ---> Using cache
+ ---> 5ec38d0e1289
+Step 8/11 : COPY . .
+ ---> Using cache
+ ---> bff67496c701
+Step 9/11 : RUN npm install
+ ---> Using cache
+ ---> 5dec9f062c90
+Step 10/11 : RUN npm run build
+ ---> Using cache
+ ---> 0fd903dcc328
+Step 11/11 : ENTRYPOINT /usr/bin/serve -s -l 5000 dist
+ ---> Using cache
+ ---> e1dadc4c836d
+Successfully built e1dadc4c836d
+Successfully tagged exer10:latest
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ run -d -p 5000:5000
+
+Komentoa 'run' ei löydy, tarkoititko:
+
+  komento 'rn' deb-paketista trn4
+  komento 'zrun' deb-paketista moreutils
+  komento 'zun' deb-paketista python-zunclient
+  komento 'zun' deb-paketista python3-zunclient
+  komento 'srun' deb-paketista slurm-client
+  komento 'runq' deb-paketista exim4-daemon-heavy
+  komento 'runq' deb-paketista exim4-daemon-light
+  komento 'runq' deb-paketista sendmail-bin
+  komento 'runc' deb-paketista runc
+  komento 'rup' deb-paketista rstat-client
+  komento 'grun' deb-paketista grun
+
+Kokeile: sudo apt install <deb-paketin nimi>
+
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ docker run -d -p 5000:5000 exer10
+f91906a1ba4b516ccbfaf1968ef714c1020f697b7cc631b6f16deee7758c2d3e
+docker: Error response from daemon: driver failed programming external connectivity on endpoint nostalgic_davinci (2f3107b147ae023831956da762e9ea99e94bd59cea5a9452d82108529dc9cbd9): Bind for 0.0.0.0:5000 failed: port is already allocated.
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ docker ps
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+b624cd12360e        frontend2                           "/bin/sh -c '/usr/bi…"   9 minutes ago       Up 9 minutes        0.0.0.0:5000->5000/tcp   exer12_front
+8afa48c2ecac        exer11                              "/bin/sh -c 'npm sta…"   About an hour ago   Up About an hour    0.0.0.0:8000->8000/tcp   backend
+d24b16066fb8        devopsdockeruh/ports_exercise       "npm start"              6 hours ago         Up 6 hours          0.0.0.0:8080->80/tcp     clever_mclaren
+c289b362b8ae        devopsdockeruh/ports_exercise       "npm start"              6 hours ago         Up 6 hours          0.0.0.0:32770->80/tcp    fervent_ellis
+a9b0880f7d81        docker-clock                        "./start.sh -c"          8 hours ago         Up 8 hours                                   heuristic_gates
+21933f48ab54        docker-clock                        "./start.sh -c"          8 hours ago         Up 8 hours                                   mystifying_edison
+8dba71126bd4        a138eebbba3c                        "./start.sh -c 12"       8 hours ago         Up 8 hours                                   quirky_mayer
+7c87c1d5e104        a138eebbba3c                        "./start.sh -c"          8 hours ago         Up 8 hours                                   stupefied_blackburn
+39b45df1c223        devopsdockeruh/exec_bash_exercise   "node index"             9 hours ago         Up 9 hours                                   clever_hugle
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ docker stop exer12_front 
+exer12_front
+heli@tiikeri:~/Projektit/docker-examples/frontend-example-docker$ docker run -d -p 5000:5000 exer10
+aeb00e3d3ec437e818948b219221ca441c85c9dc909cd7d5055e23ab18bf200d
+
+

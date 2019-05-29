@@ -1,0 +1,8 @@
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ touch logs.txt
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker run -d --name backend -p 8000:8000 -v $(pwd)/logs.txt:/mydir/logs.txt exer11
+8afa48c2ecacd953b21449816bb13ea54d94de161de66957acf3414ff1378edf
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker stop backend
+backend
+heli@tiikeri:~/Projektit/docker-examples/backend-example-docker$ docker start backend
+backend
+

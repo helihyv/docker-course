@@ -1,0 +1,6 @@
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.9$ docker run -d -p 80:80 devopsdockeruh/ports_exercise
+865b74d9bd90bcdd7c9398344914cdbc5ce046b6bcdce593a217c38880dc69fd
+docker: Error response from daemon: driver failed programming external connectivity on endpoint elated_heyrovsky (5546bdad2e8bc4e58462323f79ffa6757ed623a190ddc5ff4e5661be615c65a7): Error starting userland proxy: listen tcp 0.0.0.0:80: bind: address already in use.
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.9$ docker run -d -p 8080:80 devopsdockeruh/ports_exercise
+d24b16066fb834660a2d97c982d8536051bb9487d20bae382a7f85ac9d59fc94
+heli@tiikeri:~/Projektit/docker-course/part1/exercise_1.9$ 
