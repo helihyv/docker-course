@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  backend:
+    image: exer12back
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./logs.txt:/mydir/logs.txt
+    environment:
+      - REDIS=redis
+
+  frontend:
+    image: exer12front
+    build: ../frontend-example-docker/
+    ports:
+      - 5000:5000
+
+  redis:
+    image: redis

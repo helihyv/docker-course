@@ -1,0 +1,1 @@
+The files did not need to be changed after finishing the exercise 2.9. However after exercise 2.8 none of the buttons for previous exercises worked. I had to remove the line ENV API_URL=http://localhost:8000 from the Dockerfile of the frontend to make the message system work for exercise 2.9.  After this change the other buttons started to work too.
