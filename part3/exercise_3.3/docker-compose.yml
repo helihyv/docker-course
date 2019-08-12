@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  backend:
+    image: exer12back
+    build: .
+    volumes:
+      - ./logs.txt:/mydir/logs.txt
+    environment:
+      - REDIS=redis
+      - DB_HOST=db
+      - DB_USERNAME=back
+      - DB_PASSWORD=end
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    image: exer12front
+    build: ../frontend-example-docker/
+
+  redis:
+    image: redis
+    restart: unless-stopped
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=back
+      - POSTGRES_PASSWORD=end
+    volumes:
+      - ../backend-example-database:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - frontend
+      - backend
