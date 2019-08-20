@@ -12,6 +12,7 @@ Figure 1
 
 ![System without docker](system_without_docker.png)
 
+
 In the figure 2, a setup for a similar system using docker is shown. Each server and even both databases run in their own containers and having incompatible dependencies would not cause problems.
 
 
